@@ -1,0 +1,66 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: pubsub
+  namespace: default
+spec:
+  type: pubsub.azure.eventhubs
+  metadata:
+  - name: connectionString
+    value: "" # Required. "Endpoint=sb://****"
+  - name: storageAccountName
+    value: "" # Required.
+  - name: storageAccountKey
+    value: "" # Required.
+  - name: storageContainerName
+    value: "publisher-topic-001" # Required.
+  - name: allowedTopics
+    value: "funnytopic"
+scopes:
+  - publisher-first
+---
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: pubsub
+  namespace: default
+spec:
+  type: pubsub.azure.eventhubs
+  metadata:
+  - name: connectionString
+    value: "" # Required. "Endpoint=sb://****"
+  - name: storageAccountName
+    value: "" # Required.
+  - name: storageAccountKey
+    value: "" # Required.
+  - name: storageContainerName
+    value: "container-first-subscriber" # Required.
+  - name: allowedTopics
+    value: "funnytopic"
+  - name: publishingScopes
+    value: "publisher-first=funnytopic;subscriber-first=;subscriber-second="
+  - name : subscriptionScopes
+    value: "subscriber-first=funnytopic;subscriber-second="
+scopes:
+  - subscriber-first    
+---
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: pubsub
+  namespace: default
+spec:
+  type: pubsub.azure.eventhubs
+  metadata:
+  - name: connectionString
+    value: "" # Required. "Endpoint=sb://****"
+  - name: storageAccountName
+    value: "" # Required.
+  - name: storageAccountKey
+    value: "" # Required.
+  - name: storageContainerName
+    value: "container-second-subscriber" # Required.
+  - name: allowedTopics
+    value: "funnytopic"
+scopes:
+  - subscriber-second 
