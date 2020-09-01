@@ -1,0 +1,15 @@
+name: tyedaprsample
+
+extensions:
+- name: dapr
+  # log-level configures the log level of the dapr sidecar
+  log-level: debug
+  components-path: './components/'
+
+services:
+- name: publisher-first
+  project: Publisher.First/Publisher.First.csproj
+- name: subscriber-first
+  project: Subscriber.First/Subscriber.First.csproj
+- name: subscriber-second
+  project: Subscriber.Second/Subscriber.Second.csproj  
