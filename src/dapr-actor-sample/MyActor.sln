@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoActor.Service", "DemoAc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoActorClient", "DemoActorClient\DemoActorClient.csproj", "{D63E6702-B665-4DE2-88B4-42383F197AD6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyActor.Service.WebClient", "MyActor.Service.WebClient\MyActor.Service.WebClient.csproj", "{4C9ECD15-62AE-4307-AF91-0374928F200F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,18 @@ Global
 		{D63E6702-B665-4DE2-88B4-42383F197AD6}.Release|x64.Build.0 = Release|Any CPU
 		{D63E6702-B665-4DE2-88B4-42383F197AD6}.Release|x86.ActiveCfg = Release|Any CPU
 		{D63E6702-B665-4DE2-88B4-42383F197AD6}.Release|x86.Build.0 = Release|Any CPU
+		{4C9ECD15-62AE-4307-AF91-0374928F200F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C9ECD15-62AE-4307-AF91-0374928F200F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C9ECD15-62AE-4307-AF91-0374928F200F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4C9ECD15-62AE-4307-AF91-0374928F200F}.Debug|x64.Build.0 = Debug|Any CPU
+		{4C9ECD15-62AE-4307-AF91-0374928F200F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4C9ECD15-62AE-4307-AF91-0374928F200F}.Debug|x86.Build.0 = Debug|Any CPU
+		{4C9ECD15-62AE-4307-AF91-0374928F200F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C9ECD15-62AE-4307-AF91-0374928F200F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C9ECD15-62AE-4307-AF91-0374928F200F}.Release|x64.ActiveCfg = Release|Any CPU
+		{4C9ECD15-62AE-4307-AF91-0374928F200F}.Release|x64.Build.0 = Release|Any CPU
+		{4C9ECD15-62AE-4307-AF91-0374928F200F}.Release|x86.ActiveCfg = Release|Any CPU
+		{4C9ECD15-62AE-4307-AF91-0374928F200F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
