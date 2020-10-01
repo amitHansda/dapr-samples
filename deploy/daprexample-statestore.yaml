@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: daprexample-statestore
+  labels:
+    app: daprexample-statestore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: daprexample-statestore
+  template:
+    metadata:
+      labels:
+        app: daprexample-statestore
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "daprexample-statestore"
+        dapr.io/app-port: "80"
+    spec:
+      containers:
+      - name: daprexample-statestore
+        image: amithansda/dapr-example-statestore:latest
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
