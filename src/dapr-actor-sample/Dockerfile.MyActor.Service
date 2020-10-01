@@ -1,0 +1,24 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as build
+RUN mkdir /source
+WORKDIR /source
+COPY MyActor.sln MyActor.sln
+COPY "IDemoActor/IDemoActor.csproj" "IDemoActor/IDemoActor.csproj"
+COPY "DemoActorClient/DemoActorClient.csproj" "DemoActorClient/DemoActorClient.csproj"
+COPY "DemoActor.Service/DemoActor.Service.csproj" "DemoActor.Service/DemoActor.Service.csproj"
+COPY "MyActor.Interfaces/MyActor.Interfaces.csproj" "MyActor.Interfaces/MyActor.Interfaces.csproj"
+COPY "MyActor.Service/MyActor.Service.csproj" "MyActor.Service/MyActor.Service.csproj"
+COPY "MyActor.Service.Client/MyActor.Service.Client.csproj" "MyActor.Service.Client/MyActor.Service.Client.csproj"
+COPY "MyActor.Service.WebClient/MyActor.Service.WebClient.csproj" "MyActor.Service.WebClient/MyActor.Service.WebClient.csproj"
+RUN dotnet restore "MyActor.sln"
+COPY . .
+
+FROM build as publish
+WORKDIR /source/MyActor.Service
+RUN dotnet publish -c release -o /published-myactorservice
+
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 as final
+RUN mkdir /app
+WORKDIR /app
+COPY --from=publish /published-myactorservice .
+ENTRYPOINT ["dotnet","MyActor.Service.dll" ]

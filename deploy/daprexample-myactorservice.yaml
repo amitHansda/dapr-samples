@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: daprexample-myactorservice
+  labels:
+    app: daprexample-myactorservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: daprexample-myactorservice
+  template:
+    metadata:
+      labels:
+        app: daprexample-myactorservice
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "daprexample-myactorservice"
+        dapr.io/app-port: "80"
+    spec:
+      containers:
+      - name: daprexample-myactorservice
+        image: amithansda/dapr-example-myactor-service:latest
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always

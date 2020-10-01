@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: daprexample-myactorwebclient
+  labels:
+    app: myactorwebclient
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myactorwebclient
+  template:
+    metadata:
+      labels:
+        app: myactorwebclient
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "myactorwebclient"
+        dapr.io/app-port: "80"
+    spec:
+      containers:
+      - name: "myactorwebclient"
+        image: amithansda/dapr-example-myactor-webclient:latest
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
