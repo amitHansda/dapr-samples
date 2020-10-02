@@ -1,0 +1,10 @@
+name: myactor
+extensions:
+- name: dapr
+  log-level: debug
+  components-path: "./components/"
+services:
+- name: myactor-service
+  project: MyActor.Service/MyActor.Service.csproj
+- name: myactor-service-webclient
+  project: MyActor.Service.WebClient/MyActor.Service.WebClient.csproj
