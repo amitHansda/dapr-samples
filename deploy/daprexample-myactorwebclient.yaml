@@ -3,23 +3,23 @@ kind: Deployment
 metadata:
   name: daprexample-myactorwebclient
   labels:
-    app: myactorwebclient
+    app: daprexample-myactorwebclient
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: myactorwebclient
+      app: daprexample-myactorwebclient
   template:
     metadata:
       labels:
-        app: myactorwebclient
+        app: daprexample-myactorwebclient
       annotations:
         dapr.io/enabled: "true"
-        dapr.io/app-id: "myactorwebclient"
+        dapr.io/app-id: "daprexample-myactorwebclient"
         dapr.io/app-port: "80"
     spec:
       containers:
-      - name: "myactorwebclient"
+      - name: "daprexample-myactorwebclient"
         image: amithansda/dapr-example-myactor-webclient:latest
         ports:
         - containerPort: 80

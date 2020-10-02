@@ -1,0 +1,20 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as build
+RUN mkdir /source
+WORKDIR /source
+COPY SimplePubSub.sln SimplePubSub.sln
+COPY "SimplePubSub.BuildingBlock/SimplePubSub.BuildingBlock.csproj" "SimplePubSub.BuildingBlock/SimplePubSub.BuildingBlock.csproj"
+COPY "SimplePubSub.Publisher/SimplePubSub.Publisher.csproj" "SimplePubSub.Publisher/SimplePubSub.Publisher.csproj"
+COPY "SimplePubSub.Subscriber/SimplePubSub.Subscriber.csproj" "SimplePubSub.Subscriber/SimplePubSub.Subscriber.csproj"
+RUN dotnet restore "SimplePubSub.sln"
+COPY . .
+
+FROM build as publish
+WORKDIR /source/SimplePubSub.Publisher
+RUN dotnet publish -c release -o /published-simplepubsub-publisher
+
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 as final
+RUN mkdir /app
+WORKDIR /app
+COPY --from=publish /published-simplepubsub-publisher .
+ENTRYPOINT ["dotnet","SimplePubSub.Publisher.dll" ]

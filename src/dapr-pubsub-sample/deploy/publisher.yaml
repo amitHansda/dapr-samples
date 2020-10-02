@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: daprexample-simplepubsub-publisher
+  labels:
+    app: daprexample-simplepubsub-publisher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: daprexample-simplepubsub-publisher
+  template:
+    metadata:
+      labels:
+        app: daprexample-simplepubsub-publisher
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "daprexample-simplepubsub-publisher"
+        dapr.io/app-port: "80"
+    spec:
+      containers:
+      - name: "simplepubsub-publisher"
+        image: amithansda/dapr-example-simplepubsub-publisher:v1.0
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
